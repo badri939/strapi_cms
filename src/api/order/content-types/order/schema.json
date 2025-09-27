@@ -36,6 +36,14 @@
     },
     "paymentId": {
       "type": "string"
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": [
+        "Card",
+        "Paypal",
+        "Cash on Delivery"
+      ]
     }
   }
 }

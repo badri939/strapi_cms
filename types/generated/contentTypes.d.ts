@@ -432,6 +432,9 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
     paymentId: Schema.Attribute.String;
+    paymentMethod: Schema.Attribute.Enumeration<
+      ['Card', 'Paypal', 'Cash on Delivery']
+    >;
     publishedAt: Schema.Attribute.DateTime;
     totalCost: Schema.Attribute.Decimal;
     transactionStatus: Schema.Attribute.Enumeration<
