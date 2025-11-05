@@ -436,9 +436,10 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
       ['Card', 'Paypal', 'Cash on Delivery']
     >;
     publishedAt: Schema.Attribute.DateTime;
+    razorpayOrderId: Schema.Attribute.String;
     totalCost: Schema.Attribute.Decimal;
     transactionStatus: Schema.Attribute.Enumeration<
-      ['pending', 'paid', 'shipped']
+      ['pending', 'paid', 'refunded', 'cancelled', 'failed']
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -474,6 +475,40 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     productDetails: Schema.Attribute.Component<'product.product', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWebhookEventWebhookEvent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'webhook_events';
+  info: {
+    displayName: 'Webhook-event';
+    pluralName: 'webhook-events';
+    singularName: 'webhook-event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    eventId: Schema.Attribute.String;
+    eventType: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::webhook-event.webhook-event'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Relation<'oneToOne', 'api::order.order'>;
+    payload: Schema.Attribute.JSON;
+    paymentId: Schema.Attribute.String;
+    processedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -992,6 +1027,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
+      'api::webhook-event.webhook-event': ApiWebhookEventWebhookEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

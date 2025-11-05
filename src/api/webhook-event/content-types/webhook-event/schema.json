@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "webhook_events",
+  "info": {
+    "singularName": "webhook-event",
+    "pluralName": "webhook-events",
+    "displayName": "Webhook-event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string"
+    },
+    "paymentId": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "json"
+    },
+    "processedAt": {
+      "type": "datetime"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order"
+    }
+  }
+}

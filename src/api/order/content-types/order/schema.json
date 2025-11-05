@@ -28,7 +28,9 @@
       "enum": [
         "pending",
         "paid",
-        "shipped"
+        "refunded",
+        "cancelled",
+        "failed"
       ]
     },
     "address": {
@@ -44,6 +46,9 @@
         "Paypal",
         "Cash on Delivery"
       ]
+    },
+    "razorpayOrderId": {
+      "type": "string"
     }
   }
 }
