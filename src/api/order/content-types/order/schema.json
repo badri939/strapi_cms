@@ -50,5 +50,27 @@
     "razorpayOrderId": {
       "type": "string"
     }
+    ,
+    "razorpayInvoiceId": {
+      "type": "string",
+      "default": ""
+    },
+    "razorpayInvoiceUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "invoiceStatus": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "issued",
+        "paid",
+        "cancelled"
+      ],
+      "default": "draft"
+    },
+    "invoiceSentAt": {
+      "type": "datetime"
+    }
   }
 }
