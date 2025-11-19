@@ -6,7 +6,12 @@
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
     },
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "upgradePackages": false
+    }
   },
 
   "customizations": {
@@ -34,7 +39,7 @@
     }
   },
 
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "npm install && if [ ! -f .env ]; then cp .env.example .env; fi",
 
   "remoteUser": "node"
 }
