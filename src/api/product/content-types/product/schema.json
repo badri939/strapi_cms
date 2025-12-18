@@ -46,6 +46,21 @@
       "type": "component",
       "component": "product.product",
       "repeatable": true
+    },
+    "availableSizes": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "default": "[]",
+      "options": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL",
+        "Free Size"
+      ]
     }
   }
 }

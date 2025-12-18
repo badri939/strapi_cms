@@ -428,6 +428,11 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     customerEmail: Schema.Attribute.String;
     customerName: Schema.Attribute.String;
+    invoiceSentAt: Schema.Attribute.DateTime;
+    invoiceStatus: Schema.Attribute.Enumeration<
+      ['draft', 'issued', 'paid', 'cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'draft'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
@@ -436,6 +441,9 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
       ['Card', 'Paypal', 'Cash on Delivery']
     >;
     publishedAt: Schema.Attribute.DateTime;
+    razorpayInvoiceId: Schema.Attribute.String & Schema.Attribute.DefaultTo<''>;
+    razorpayInvoiceUrl: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<''>;
     razorpayOrderId: Schema.Attribute.String;
     totalCost: Schema.Attribute.Decimal;
     transactionStatus: Schema.Attribute.Enumeration<
@@ -458,6 +466,12 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    availableSizes: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'Free Size']
+      > &
+      Schema.Attribute.DefaultTo<'[]'>;
     category: Schema.Attribute.Enumeration<['Kurthis', 'Sarees', 'Lehenga']>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

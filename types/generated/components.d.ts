@@ -13,10 +13,25 @@ export interface ProductProduct extends Struct.ComponentSchema {
   };
 }
 
+export interface ProductSize extends Struct.ComponentSchema {
+  collectionName: 'components_product_sizes';
+  info: {
+    displayName: 'Size';
+    icon: 'expand';
+  };
+  attributes: {
+    size: Schema.Attribute.Enumeration<
+      ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'Free Size']
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'product.product': ProductProduct;
+      'product.size': ProductSize;
     }
   }
 }
