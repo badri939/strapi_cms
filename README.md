@@ -2,6 +2,19 @@
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
+## 🔧 Quick Start with GitHub Codespaces
+
+This repository is configured for GitHub Codespaces! Click the button below to open this project in a cloud-based development environment:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/badri939/strapi_cms)
+
+When you open a Codespace:
+- Node.js and all dependencies will be automatically installed
+- Port 1337 will be forwarded for the Strapi admin panel
+- You can start developing immediately with `npm run develop`
+
+## 💻 Local Development
+
 ### `develop`
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
